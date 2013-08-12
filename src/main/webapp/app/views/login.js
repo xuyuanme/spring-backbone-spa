@@ -21,7 +21,7 @@ define([
     // View initialization with logout outside if the view and listening on model
     initialize:function (callback) {
       this.callback = callback;
-      $("a.logout").click(this.logout);
+      //$("a.logout").click(this.logout);
       LoginStatus.on('change:loggedIn', this.loggedInChange, this);
       LoginStatus.fetch();
     },
@@ -49,14 +49,14 @@ define([
     // Cancel button handler
     cancel:function () {
       this.$el.modal('hide');
-    },
-    // Logout button handler
-    logout:function () {
-      LoginStatus.destroy();
-      LoginStatus.set({
-        loggedIn:false
-      });
     }
+    // Logout button handler
+//    logout:function () {
+//      LoginStatus.destroy();
+//      LoginStatus.set({
+//        loggedIn:false
+//      });
+//    }
   });
 
   // Return the view as the Require module

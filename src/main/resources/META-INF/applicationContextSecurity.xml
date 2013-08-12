@@ -23,6 +23,10 @@
 	<intercept-url pattern="/data-rest/**" access="ROLE_USER" />
     <!-- Remember me mechanism trigger -->
     <remember-me />
+    
+    <logout invalidate-session="true" 
+			logout-success-url="/" 
+			logout-url="/logout"/>
   </http>
 
   <!-- Spring Security authentication manager, an alias is created to inject it into the LoginController -->
