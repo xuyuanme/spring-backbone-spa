@@ -7,8 +7,9 @@ define([
   'collections/users',
   'collections/skills',
   'views/users',
-  'views/skills'
-], function ($, Backbone, UsersCollection, SkillsCollection, UsersView, SkillsView) {
+  'views/skills',
+  'views/login'
+], function ($, Backbone, UsersCollection, SkillsCollection, UsersView, SkillsView, LoginView) {
   /**
    * Url router for the applications. Defines routes with url and handlers
    */
@@ -20,12 +21,14 @@ define([
       'users/:page/:sort/:dir':'users',
       'skills':'skills',
       'skills/:page':'skills',
-      'skills/:page/:sort/:dir':'skills'
+      'skills/:page/:sort/:dir':'skills',
+      'showLogin':'showLogin'
     },
     // Constructor
     initialize:function () {
       this.usersView = null;
       this.skillsView = null;
+      this.loginView = null;
     },
     // User handler with list, paging and sorting handling
     users:function (page, sort, dir) {
@@ -54,6 +57,12 @@ define([
       SkillsCollection.sort = sort;
       SkillsCollection.dir = dir;
       SkillsCollection.fetchPage();
+    },
+    showLogin:function() {
+    	if(!this.loginView) {
+    		this.loginView = new LoginView();
+    	}
+    	this.loginView.showLogin();
     }
   });
 

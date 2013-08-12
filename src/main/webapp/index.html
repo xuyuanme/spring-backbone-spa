@@ -14,6 +14,7 @@
         <li><a href="#skills" class="skills">Skills</a></li>
       </ul>
       <ul class="nav pull-right">
+        <li><a href="#showLogin">Login</a></li>
         <li><a href="logout" class="logout">Logout</a></li>
       </ul>
     </div>
@@ -24,6 +25,7 @@
   <!-- It's should be possible to add form content with a dynamic template but there is a reason if the content is in the main static HTML file.
         Even if it's hidden, the browser will detect the form login and will be able to save you authentication for the next time. A completely
         dynamic login form would break this useful browser feature -->
+ <div class="register-login">
   <div class="modal hide fade login" style="display: none;">
     <div class="modal-header">
       <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -52,9 +54,42 @@
       </form>
     </div>
     <div class="modal-footer">
-      <a href="#" class="btn">Cancel</a> <a href="#" class="btn btn-primary">Login</a>
+      <a href="#" class="btn cancelLogin">Cancel</a> <a href="#" class="btn showRegister">Register</a> <a href="#" class="btn btn-primary doLogin">Login</a>
     </div>
   </div>
+  
+  <div class="modal hide fade register" style="display: none;">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+      <h3>Register</h3>
+    </div>
+    <div class="modal-body">
+      <form class="form-horizontal">
+        <div class="control-group">
+          <label class="control-label" for="username">Login</label>
+          <div class="controls">
+            <input type="text" id="username" placeholder="Login">
+          </div>
+        </div>
+        <div class="control-group">
+          <label class="control-label" for="password">Password</label>
+          <div class="controls">
+            <input type="password" id="password" placeholder="Password">
+          </div>
+        </div>
+        <div class="control-group">
+          <label class="control-label" for="password">Repeat Pwd</label>
+          <div class="controls">
+            <input type="password" id="password" placeholder="Password">
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <a href="#" class="btn cancelLogin">Cancel</a> <a href="#" class="btn btn-primary doRegister">Register</a>
+    </div>
+  </div>
+ </div>
 
   <!-- Main web site container positioned with 960 gs classes -->
   <div class="container">

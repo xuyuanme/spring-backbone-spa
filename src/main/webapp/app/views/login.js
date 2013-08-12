@@ -12,11 +12,12 @@ define([
    */
   var LoginView = Backbone.View.extend({
     // Wired on the login modal
-    el:'div.modal.login',
+    el:'div.register-login',
     // Listen view events on modal buttons
     events:{
-      'click .modal-footer .btn:not(.btn-primary)':'cancel',
-      'click .modal-footer .btn.btn-primary':'ok'
+      'click .modal-footer .btn.cancelLogin':'cancel',
+      'click .modal-footer .btn.doLogin':'ok',
+      'click .modal-footer .btn.showRegister':'showRegister'
     },
     // View initialization with logout outside if the view and listening on model
     initialize:function (callback) {
@@ -28,13 +29,13 @@ define([
     // Login state change handler
     loggedInChange:function () {
       if (LoginStatus.get('loggedIn')) {
-        this.$el.modal('hide');
+        this.$("div.modal.login").modal('hide');
         if (this.callback) {
           this.callback();
         }
       } else {
         this.$("form input").val(null);
-        this.$el.modal('show');
+        this.$("div.modal.login").modal('show');
       }
     },
     // Ok button handler
@@ -48,7 +49,15 @@ define([
     },
     // Cancel button handler
     cancel:function () {
-      this.$el.modal('hide');
+      this.$("div.modal").modal('hide');
+    },
+    showRegister:function() {
+    	this.$("div.modal.login").modal('hide');
+    	this.$("div.modal.register").modal('show');
+    },
+    showLogin:function() {
+    	this.$("div.modal.login").modal('show');
+    	this.$("div.modal.register").modal('hide');
     }
     // Logout button handler
 //    logout:function () {
