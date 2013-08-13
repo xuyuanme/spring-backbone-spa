@@ -22,7 +22,7 @@ define([
       'skills':'skills',
       'skills/:page':'skills',
       'skills/:page/:sort/:dir':'skills',
-      'showLogin':'showLogin'
+      'login':'showLogin'
     },
     // Constructor
     initialize:function () {

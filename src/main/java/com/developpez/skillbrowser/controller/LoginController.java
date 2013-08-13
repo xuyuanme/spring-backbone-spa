@@ -1,6 +1,9 @@
 package com.developpez.skillbrowser.controller;
 
+import com.developpez.skillbrowser.model.User;
 import com.developpez.skillbrowser.model.dto.LoginStatus;
+import com.developpez.skillbrowser.service.impl.UserServiceImpl;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -47,6 +50,9 @@ public class    LoginController {
    */
   @Autowired
   private RememberMeServices rememberMeServices;
+  
+  @Autowired
+  private UserServiceImpl userService;
 
   /**
    * Get login status request. RequestMapping is done on the HTTP method GET. Check authentication on session and if not found, from remember me
@@ -81,7 +87,7 @@ public class    LoginController {
    * @return the new login status after login. The LoginStatus instance is serialized in JSON because of "@ResponseBody" which triggered
    *         serialization, presence of Jackson library in classpath which allow JSON serialization and request header which ask for JSON.
    */
-  @RequestMapping(method = {RequestMethod.POST, RequestMethod.PUT})
+  @RequestMapping(method = {RequestMethod.PUT})
   @ResponseBody
   public LoginStatus login(HttpServletRequest request, HttpServletResponse response, @RequestBody LoginStatus loginStatus) {
     Authentication authentication = null;
@@ -97,6 +103,17 @@ public class    LoginController {
     }
     return authenticationToLoginStatus(authentication);
   }
+  
+  // Register new user
+  @RequestMapping(method = {RequestMethod.POST})
+  @ResponseBody
+  public LoginStatus create(HttpServletRequest request, HttpServletResponse response, @RequestBody LoginStatus loginStatus) {
+	User user = new User();
+	user.setLogin(loginStatus.getUsername());
+	user.setPassword(loginStatus.getPassword());
+	userService.save(user);
+	return login(request, response, loginStatus);
+  }
 
   /**
    * Logout request. RequestMapping is done on the HTTP method DELETE. Logout the user by removing context in session and calling remember me service.
@@ -105,13 +122,13 @@ public class    LoginController {
    * @param response HttpServletResponse provided by Spring MVC and needed to use remember me service.
    * @throws IOException Can appends when writing the "logged out" message on response stream.
    */
-  @RequestMapping(method = RequestMethod.DELETE)
-  @ResponseBody
-  public void logout(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    setSessionAuthentication(request, null);
-    rememberMeServices.loginFail(request, response);
-    response.getWriter().println("logged out");
-  }
+//  @RequestMapping(method = RequestMethod.DELETE)
+//  @ResponseBody
+//  public void logout(HttpServletRequest request, HttpServletResponse response) throws IOException {
+//    setSessionAuthentication(request, null);
+//    rememberMeServices.loginFail(request, response);
+//    response.getWriter().println("logged out");
+//  }
 
   /**
    * Get current session authentication.<br/>

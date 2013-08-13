@@ -12,12 +12,13 @@ define([
    */
   var LoginView = Backbone.View.extend({
     // Wired on the login modal
-    el:'div.register-login',
+    el:'body',
     // Listen view events on modal buttons
     events:{
       'click .modal-footer .btn.cancelLogin':'cancel',
       'click .modal-footer .btn.doLogin':'ok',
-      'click .modal-footer .btn.showRegister':'showRegister'
+      'click .modal-footer .btn.showRegister':'showRegister',
+      'click .modal-footer .btn.doRegister':'doRegister'
     },
     // View initialization with logout outside if the view and listening on model
     initialize:function (callback) {
@@ -29,13 +30,15 @@ define([
     // Login state change handler
     loggedInChange:function () {
       if (LoginStatus.get('loggedIn')) {
-        this.$("div.modal.login").modal('hide');
+        this.cancel();
+        this.$("ul.nav.pull-right").html('<li><a href="logout" class="logout">Logout '+LoginStatus.get('username')+'</a></li>');
         if (this.callback) {
           this.callback();
         }
       } else {
         this.$("form input").val(null);
-        this.$("div.modal.login").modal('show');
+        this.showLogin();
+        this.$("ul.nav.pull-right").html('<li><a href="#login">Login</a></li>');
       }
     },
     // Ok button handler
@@ -45,7 +48,14 @@ define([
         password:this.$("#password").val(),
         rememberMe:this.$("#rememberMe:checked").length > 0,
       });
-      LoginStatus.save();
+      LoginStatus.save({}, {type: 'put'});
+    },
+    doRegister:function(){
+    	LoginStatus.set({
+    		username:this.$("#newUsername").val(),
+    	    password:this.$("#newPassword").val(),
+    	});
+    	LoginStatus.save({}, {type: 'post'});
     },
     // Cancel button handler
     cancel:function () {

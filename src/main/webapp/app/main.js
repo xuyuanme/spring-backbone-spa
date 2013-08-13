@@ -42,10 +42,10 @@ require([
 ], function (LoginView, Router) {
   // Initialize routing and start Backbone.history()
   new Router();
-
+  Backbone.history.start();
   // Initialize the application view
   new LoginView(function () {
     console.log("login callback");
-    Backbone.history.start();
+    //Backbone.history.start();
   });
 });

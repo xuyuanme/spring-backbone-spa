@@ -53,6 +53,10 @@ public class UserServiceImpl implements UserDetailsService, InitializingBean {
             return user;
         }
     }
+    
+    public User save(User user) {
+    	return userRepository.save(user);
+    }
 
     /**
      * By implementing InitializingBean in a Spring bean, this method will be launch after Spring wirings are finished.<br/>
