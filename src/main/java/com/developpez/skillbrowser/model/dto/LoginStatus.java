@@ -18,8 +18,23 @@ public class LoginStatus {
   private String password;
 
   private Boolean rememberMe;
+  
+  private Integer returnCode;
+  
+  public static final int RC_UNDEFINED = -1;
+  public static final int RC_SUCCESS = 0;
+  public static final int RC_LOGIN_ERROR = 1;
+  public static final int RC_REGISTER_ERROR = 2;
 
-  /**
+  public Integer getReturnCode() {
+	return returnCode;
+  }
+
+  public void setReturnCode(Integer returnCode) {
+	this.returnCode = returnCode;
+  }
+
+/**
    * Is logged in
    *
    * @return loggedIn

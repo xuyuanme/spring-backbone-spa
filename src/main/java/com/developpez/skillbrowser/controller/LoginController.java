@@ -101,7 +101,7 @@ public class    LoginController {
     if (loginStatus.getRememberMe() != null && loginStatus.getRememberMe().equals("on") && isAuthenticated(authentication)) {
       rememberMeServices.loginSuccess(request, response, authentication);
     }
-    return authenticationToLoginStatus(authentication);
+    return authenticationToLoginStatus(authentication, LoginStatus.RC_LOGIN_ERROR);
   }
   
   // Register new user
@@ -112,7 +112,19 @@ public class    LoginController {
 	user.setLogin(loginStatus.getUsername());
 	user.setPassword(loginStatus.getPassword());
 	userService.save(user);
-	return login(request, response, loginStatus);
+	
+	Authentication authentication = null;
+    try {
+      UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(loginStatus.getUsername(), loginStatus.getPassword());
+      authentication = authenticationManager.authenticate(token);
+      setSessionAuthentication(request, authentication);
+    } catch (BadCredentialsException e) {
+      authentication = SecurityContextHolder.getContext().getAuthentication();
+    }
+    if (loginStatus.getRememberMe() != null && loginStatus.getRememberMe().equals("on") && isAuthenticated(authentication)) {
+      rememberMeServices.loginSuccess(request, response, authentication);
+    }
+    return authenticationToLoginStatus(authentication, LoginStatus.RC_REGISTER_ERROR);
   }
 
   /**
@@ -171,6 +183,10 @@ public class    LoginController {
   private boolean isAuthenticated(Authentication authentication) {
     return authentication != null && !authentication.getName().equals("anonymousUser") && authentication.isAuthenticated();
   }
+  
+  private LoginStatus authenticationToLoginStatus(Authentication authentication) {
+	  return authenticationToLoginStatus(authentication, LoginStatus.RC_UNDEFINED);
+  }
 
   /**
    * Convert Spring Security authentication to LoginStatus DTO.
@@ -178,14 +194,16 @@ public class    LoginController {
    * @param authentication authentication to convert
    * @return LoginStatus instance corresponding to the authentication
    */
-  private LoginStatus authenticationToLoginStatus(Authentication authentication) {
+  private LoginStatus authenticationToLoginStatus(Authentication authentication, int errorCode) {
     LoginStatus loginStatus = new LoginStatus();
     if (isAuthenticated(authentication)) {
       loginStatus.setLoggedIn(true);
       loginStatus.setUsername(authentication.getName());
+      loginStatus.setReturnCode(LoginStatus.RC_SUCCESS);
     } else {
       loginStatus.setLoggedIn(false);
       loginStatus.setUsername(null);
+      loginStatus.setReturnCode(errorCode);
     }
     return loginStatus;
   }

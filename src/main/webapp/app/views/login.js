@@ -24,11 +24,11 @@ define([
     initialize:function (callback) {
       this.callback = callback;
       //$("a.logout").click(this.logout);
-      LoginStatus.on('change:loggedIn', this.loggedInChange, this);
+      LoginStatus.on('change:returnCode', this.returnCodeChange, this);
       LoginStatus.fetch();
     },
     // Login state change handler
-    loggedInChange:function () {
+    returnCodeChange:function () {
       if (LoginStatus.get('loggedIn')) {
         this.cancel();
         this.$("ul.nav.pull-right").html('<li><a href="logout" class="logout">Logout '+LoginStatus.get('username')+'</a></li>');
@@ -36,9 +36,16 @@ define([
           this.callback();
         }
       } else {
-        this.$("form input").val(null);
-        this.showLogin();
-        this.$("ul.nav.pull-right").html('<li><a href="#login">Login</a></li>');
+    	  // Not logged in or login error
+    	  if(LoginStatus.get('returnCode')==-1 || LoginStatus.get('returnCode')==1) {
+    		  this.$("form input").val(null);
+    	      this.showLogin();
+    	  }
+    	  // Login error or register error
+          if(LoginStatus.get('returnCode')==1 || LoginStatus.get('returnCode')==2) {
+        	  this.$('.alert').show();
+          }
+          this.$("ul.nav.pull-right").html('<li><a href="#login">Login</a></li>');
       }
     },
     // Ok button handler
@@ -62,10 +69,12 @@ define([
       this.$("div.modal").modal('hide');
     },
     showRegister:function() {
+    	this.$('.alert').hide();
     	this.$("div.modal.login").modal('hide');
     	this.$("div.modal.register").modal('show');
     },
     showLogin:function() {
+    	this.$('.alert').hide();
     	this.$("div.modal.login").modal('show');
     	this.$("div.modal.register").modal('hide');
     }

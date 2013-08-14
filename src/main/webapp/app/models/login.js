@@ -14,7 +14,8 @@ define([
       loggedIn:null,
       username:'',
       password:'',
-      rememberMe:false
+      rememberMe:false,
+      returnCode:-999
     },
     // Shortcut method
     isNew:function () {

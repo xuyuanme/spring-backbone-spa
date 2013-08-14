@@ -40,6 +40,7 @@ public class User implements UserDetails {
   /**
    * Login of the user. No annotation here, the parameter will be automatically mapped in the table.
    */
+  @Column(unique = true)
   private String login;
 
   /**

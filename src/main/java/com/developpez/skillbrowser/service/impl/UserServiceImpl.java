@@ -55,7 +55,11 @@ public class UserServiceImpl implements UserDetailsService, InitializingBean {
     }
     
     public User save(User user) {
-    	return userRepository.save(user);
+    	try {
+    		return userRepository.save(user);
+    	} catch(Exception e) {
+    		return new User();
+    	}
     }
 
     /**
