@@ -2,25 +2,46 @@
 <html lang="en">
 <head>
 <title>Skill Browser</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link href="libs/bootstrap-2.1.0/css/bootstrap.min.css" rel="stylesheet" />
+<link href="libs/bootstrap-2.1.0/css/bootstrap-responsive.min.css" rel="stylesheet">
 <script data-main="app/main" src="libs/require-2.0.6/require.js"></script>
 </head>
-<body ng-app>
-  <div class="navbar navbar-inverse navbar-static-top">
-    <div class="navbar-inner">
-      <a class="brand" href="#">Skill Browser</a>
-      <ul class="nav">
-        <li><a href="#users" class="users">Users</a></li>
-        <li><a href="#skills" class="skills">Skills</a></li>
-      </ul>
-      <ul class="nav pull-right">
-      <!-- fill with login.js -->
-      </ul>
-    </div>
-  </div>
+<body>
+  <style>
+      @media (min-width: 980px) {
+        body {
+          margin-top: 43px;
+          width: 980px ;
+          margin-left: auto ;
+          margin-right: auto ;
+        }
+      }
+  </style>
 
+	<div class="navbar navbar-inverse navbar-fixed-top">
+		<div class="navbar-inner">
+			<div class="container">
+				<button type="button" class="btn btn-navbar" data-toggle="collapse"
+					data-target=".nav-collapse">
+					<span class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+				<a class="brand" href="#">Skill Browser</a>
+				<div class="nav-collapse collapse">
+					<ul class="nav">
+						<li><a href="#users" class="users">Users</a></li>
+						<li><a href="#skills" class="skills">Skills</a></li>
+					</ul>
+					<ul class="nav pull-right">
+						<!-- fill with login.js -->
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
 
-  <!-- This block is the login form and it starts hidden (diplay: none). It will be shown by jQuery UI dialog feature when needed. -->
+	<!-- This block is the login form and it starts hidden (diplay: none). It will be shown by jQuery UI dialog feature when needed. -->
   <!-- It's should be possible to add form content with a dynamic template but there is a reason if the content is in the main static HTML file.
         Even if it's hidden, the browser will detect the form login and will be able to save you authentication for the next time. A completely
         dynamic login form would break this useful browser feature -->
