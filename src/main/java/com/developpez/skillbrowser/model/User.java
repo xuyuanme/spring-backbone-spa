@@ -4,6 +4,7 @@ import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 import org.springframework.data.rest.repository.annotation.RestResource;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.password.StandardPasswordEncoder;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -23,6 +24,10 @@ import java.util.Set;
 @Table(name = "usr")
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class User implements UserDetails {
+	
+	@Transient
+	@RestResource(exported = false)
+	private static StandardPasswordEncoder encoder = new StandardPasswordEncoder();
 
   /**
    * Generated serial version UID for serialization: Spring Security's UserDetails has to be serializable
@@ -114,7 +119,7 @@ public class User implements UserDetails {
    * @param password
    */
   public void setPassword(String password) {
-    this.password = password;
+    this.password = encoder.encode(password);
   }
 
   /**

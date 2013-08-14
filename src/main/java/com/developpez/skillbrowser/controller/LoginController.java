@@ -12,7 +12,6 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.crypto.password.StandardPasswordEncoder;
 import org.springframework.security.web.authentication.RememberMeServices;
 import org.springframework.security.web.context.HttpSessionSecurityContextRepository;
 import org.springframework.stereotype.Controller;
@@ -54,9 +53,6 @@ public class    LoginController {
   
   @Autowired
   private UserServiceImpl userService;
-  
-  @Autowired
-  private StandardPasswordEncoder encoder;
 
   /**
    * Get login status request. RequestMapping is done on the HTTP method GET. Check authentication on session and if not found, from remember me
@@ -114,7 +110,7 @@ public class    LoginController {
   public LoginStatus create(HttpServletRequest request, HttpServletResponse response, @RequestBody LoginStatus loginStatus) {
 	User user = new User();
 	user.setLogin(loginStatus.getUsername());
-	user.setPassword(encoder.encode(loginStatus.getPassword()));
+	user.setPassword(loginStatus.getPassword());
 	userService.save(user);
 	
 	Authentication authentication = null;
