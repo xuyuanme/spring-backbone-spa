@@ -29,11 +29,17 @@
 			logout-success-url="/" 
 			logout-url="/logout"/>
   </http>
+  
+  <beans:bean id="encoder" 
+    class="org.springframework.security.crypto.password.StandardPasswordEncoder">
+  </beans:bean>
 
   <!-- Spring Security authentication manager, an alias is created to inject it into the LoginController -->
   <authentication-manager alias="authenticationManager">
     <!-- The application user service is used as the Spring Security authentication provider -->
-    <authentication-provider user-service-ref="userServiceImpl" />
+    <authentication-provider user-service-ref="userServiceImpl">
+    	<password-encoder ref="encoder" />
+    </authentication-provider>
   </authentication-manager>
 
 </beans:beans>
