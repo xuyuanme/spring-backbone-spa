@@ -39,6 +39,17 @@ public class User implements UserDetails {
 	public void setMessages(Set<Message> messages) {
 		this.messages = messages;
 	}
+	
+	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER, mappedBy="user")
+	private Set<Comment> comments = new HashSet<Comment>(0);
+
+    public Set<Comment> getComments() {
+		return comments;
+	}
+
+	public void setComments(Set<Comment> comments) {
+		this.comments = comments;
+	}
 
 /**
    * Generated serial version UID for serialization: Spring Security's UserDetails has to be serializable

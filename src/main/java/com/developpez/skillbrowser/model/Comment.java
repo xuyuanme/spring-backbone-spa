@@ -11,10 +11,10 @@ import org.codehaus.jackson.map.annotate.JsonSerialize;
 import org.codehaus.jackson.map.annotate.JsonSerialize.Inclusion;
 
 @Entity
-@DiscriminatorValue("1")
+@DiscriminatorValue("2")
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonSerialize(include = Inclusion.NON_NULL)
-public class Comment extends Message {
+public class Comment extends BaseMessage {
 	public Comment() {
 		super();
 		this.setText("default comment");
