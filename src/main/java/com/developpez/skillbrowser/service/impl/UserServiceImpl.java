@@ -1,7 +1,11 @@
 package com.developpez.skillbrowser.service.impl;
 
+import com.developpez.skillbrowser.model.Comment;
+import com.developpez.skillbrowser.model.Message;
 import com.developpez.skillbrowser.model.Skill;
 import com.developpez.skillbrowser.model.User;
+import com.developpez.skillbrowser.repository.CommentRepo;
+import com.developpez.skillbrowser.repository.MessageRepo;
 import com.developpez.skillbrowser.repository.SkillRepository;
 import com.developpez.skillbrowser.repository.UserRepository;
 import org.springframework.beans.factory.InitializingBean;
@@ -38,6 +42,12 @@ public class UserServiceImpl implements UserDetailsService, InitializingBean {
 
     @Autowired
     private SkillRepository skillRepository;
+    
+    @Autowired
+    private MessageRepo messageRepo;
+    
+    @Autowired
+    private CommentRepo commentRepo;
 
     /**
      * This is the main (and only) method to implement to be a Spring Security authentication provider. It needs only to return the user corresponding
@@ -94,7 +104,14 @@ public class UserServiceImpl implements UserDetailsService, InitializingBean {
                 user.setLogin("login " + i);
                 user.setPassword("password" + i);
                 user.setSkills(skills);
+                Message m = new Message();
+                m.setUser(user);
+                Comment c = new Comment();
+                c.setMessage(m);
+                c.setUser(user);
                 userRepository.save(user);
+                messageRepo.save(m);
+                commentRepo.save(c);
             }
         }
     }

@@ -28,8 +28,19 @@ public class User implements UserDetails {
 	@Transient
 	@RestResource(exported = false)
 	private static StandardPasswordEncoder encoder = new StandardPasswordEncoder();
+	
+	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER, mappedBy="user")
+	private Set<Message> messages = new HashSet<Message>(0);
 
-  /**
+    public Set<Message> getMessages() {
+		return messages;
+	}
+
+	public void setMessages(Set<Message> messages) {
+		this.messages = messages;
+	}
+
+/**
    * Generated serial version UID for serialization: Spring Security's UserDetails has to be serializable
    */
   private static final long serialVersionUID = 818129969599480161L;
