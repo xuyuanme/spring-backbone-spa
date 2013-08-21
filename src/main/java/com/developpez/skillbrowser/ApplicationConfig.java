@@ -1,5 +1,7 @@
 package com.developpez.skillbrowser;
 
+import java.util.Properties;
+
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -67,11 +69,16 @@ public class ApplicationConfig {
     HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
     vendorAdapter.setDatabase(Database.MYSQL);
     vendorAdapter.setGenerateDdl(true);
+    vendorAdapter.setShowSql(Boolean.valueOf(env.getProperty("adapter.showsql")));
 
     LocalContainerEntityManagerFactoryBean factory = new LocalContainerEntityManagerFactoryBean();
     factory.setJpaVendorAdapter(vendorAdapter);
     factory.setPackagesToScan(getClass().getPackage().getName());
     factory.setDataSource(dataSource());
+    
+    Properties jpaProperties = new Properties();
+    jpaProperties.setProperty("hibernate.hbm2ddl.auto", env.getProperty("hibernate.hbm2ddl.auto"));
+    factory.setJpaProperties(jpaProperties);
 
     return factory;
   }

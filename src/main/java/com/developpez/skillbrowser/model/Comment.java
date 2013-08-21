@@ -17,11 +17,11 @@ import org.codehaus.jackson.map.annotate.JsonSerialize.Inclusion;
 public class Comment extends Message {
 	public Comment() {
 		super();
-		this.setContent("default comment");
+		this.setText("default comment");
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "messageId")
+	@JoinColumn(name = "parentMessage")
 	private Message message;
 
 	public Message getMessage() {

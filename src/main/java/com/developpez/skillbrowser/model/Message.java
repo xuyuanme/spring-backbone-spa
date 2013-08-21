@@ -43,7 +43,7 @@ public class Message {
 	public static final Integer DELETED = 1;
 
 	public Message() {
-		this.setContent("default message");
+		this.setText("default message");
 		this.setStatus(NORMAL);
 		this.setTimestamp(Calendar.getInstance().getTime());
 	}
@@ -56,7 +56,7 @@ public class Message {
 	@JoinColumn(name = "userId", nullable = false)
 	private User user;
 
-	private String content;
+	private String text;
 
 	private Integer status;
 
@@ -89,12 +89,12 @@ public class Message {
 		this.user = user;
 	}
 
-	public String getContent() {
-		return content;
+	public String getText() {
+		return text;
 	}
 
-	public void setContent(String content) {
-		this.content = content;
+	public void setText(String content) {
+		this.text = content;
 	}
 
 	public Integer getStatus() {
