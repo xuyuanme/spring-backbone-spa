@@ -7,6 +7,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.StandardPasswordEncoder;
 
 import javax.persistence.*;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
@@ -29,27 +30,27 @@ public class User implements UserDetails {
 	@RestResource(exported = false)
 	private static StandardPasswordEncoder encoder = new StandardPasswordEncoder();
 	
-	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER, mappedBy="user")
+	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY, mappedBy="user")
 	private Set<Message> messages = new HashSet<Message>(0);
 
-    public Set<Message> getMessages() {
-		return messages;
-	}
+//    public Set<Message> getMessages() {
+//		return messages;
+//	}
 
-	public void setMessages(Set<Message> messages) {
-		this.messages = messages;
-	}
-	
+//	public void setMessages(Set<Message> messages) {
+//		this.messages = messages;
+//	}
+
 	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER, mappedBy="user")
 	private Set<Comment> comments = new HashSet<Comment>(0);
 
-    public Set<Comment> getComments() {
-		return comments;
-	}
+//    public Set<Comment> getComments() {
+//		return comments;
+//	}
 
-	public void setComments(Set<Comment> comments) {
-		this.comments = comments;
-	}
+//	public void setComments(Set<Comment> comments) {
+//		this.comments = comments;
+//	}
 
 /**
    * Generated serial version UID for serialization: Spring Security's UserDetails has to be serializable

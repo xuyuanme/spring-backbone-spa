@@ -11,7 +11,7 @@ import org.codehaus.jackson.map.annotate.JsonSerialize;
 import org.codehaus.jackson.map.annotate.JsonSerialize.Inclusion;
 
 @Entity
-@DiscriminatorValue("2")
+//@DiscriminatorValue("2")
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonSerialize(include = Inclusion.NON_NULL)
 public class Comment extends BaseMessage {
@@ -21,7 +21,7 @@ public class Comment extends BaseMessage {
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "parentMessage")
+	@JoinColumn(name = "messageId")
 	private Message message;
 
 	public Message getMessage() {

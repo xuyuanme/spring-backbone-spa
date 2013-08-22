@@ -14,7 +14,7 @@ import org.codehaus.jackson.map.annotate.JsonSerialize;
 import org.codehaus.jackson.map.annotate.JsonSerialize.Inclusion;
 
 @Entity
-@DiscriminatorValue("1")
+//@DiscriminatorValue("1")
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonSerialize(include = Inclusion.NON_NULL)
 public class Message extends BaseMessage {
@@ -25,12 +25,4 @@ public class Message extends BaseMessage {
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "message")
 	private Set<Comment> comments = new HashSet<Comment>(0);
-
-	public void setComments(Set<Comment> comments) {
-		this.comments = comments;
-	}
-
-	public Set<Comment> getComments() {
-		return comments;
-	}
 }
