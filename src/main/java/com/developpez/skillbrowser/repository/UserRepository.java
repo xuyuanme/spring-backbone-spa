@@ -2,6 +2,7 @@ package com.developpez.skillbrowser.repository;
 
 import com.developpez.skillbrowser.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.repository.query.Param;
 import org.springframework.data.rest.repository.annotation.RestResource;
 
 /**
@@ -21,6 +22,6 @@ public interface UserRepository extends JpaRepository<User, Integer> {
    * @param login instance to be the value of the criteria
    * @return a single user matching the login
    */
-  User findByLogin(String login);
+  User findByLogin(@Param(value = "login") String login);
 
 }
