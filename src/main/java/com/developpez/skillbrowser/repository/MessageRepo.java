@@ -8,11 +8,19 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.data.rest.repository.annotation.RestResource;
 
 import com.developpez.skillbrowser.model.Message;
+import com.developpez.skillbrowser.model.dto.MessageDto;
 
 @RestResource(path = "message")
 public interface MessageRepo extends JpaRepository<Message, Integer> {
 	
 	@Query("select m from Message m where concat('', m.user) = :id")
 	List<Message> findByUser(@Param(value = "id") String id);
+	
+	@Query("select new com.developpez.skillbrowser.model.dto.MessageDto"
+			+ " (m.id,u.login,m.text,m.timestamp) "
+			+ " from Message m, User u "
+			+ " where m.user = u.id "
+			)
+	List<MessageDto> findAllDto();
 
 }
