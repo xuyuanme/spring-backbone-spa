@@ -11,6 +11,7 @@
   <!-- Spring Security special HTTP filter authorization on the login command -->
   <http security="none" pattern="/rest/login" />
   <http security="none" pattern="/rest/register" />
+  <http security="none" pattern="/data-rest/**" />
 
   <!-- Spring Security entry point which only send an HTTP 403 Forbidden in case of bad authentication. This has to be explicitely defined because the 
     default handling is now to forward on an automatically generated login page which is not what we want for an Ajax login -->
