@@ -5,8 +5,9 @@ define([
   'bootstrap',
   'underscore',
   'backbone',
-  'models/login'
-], function ($, _, Backbone, LoginStatus) {
+  'models/login',
+  'models/message'
+], function ($, _, Backbone, LoginStatus, Message) {
   /**
    * Login view which represents the login popup
    */
@@ -18,7 +19,8 @@ define([
       'click .modal-footer .btn.cancelLogin':'cancel',
       'click .modal-footer .btn.doLogin':'ok',
       'click .modal-footer .btn.showRegister':'showRegister',
-      'click .modal-footer .btn.doRegister':'doRegister'
+      'click .modal-footer .btn.doRegister':'doRegister',
+      'click .submitMessage':'submitMessage'
     },
     // View initialization with logout outside if the view and listening on model
     initialize:function (callback) {
@@ -77,6 +79,13 @@ define([
     	this.$('.alert').hide();
     	this.$("div.modal.login").modal('show');
     	this.$("div.modal.register").modal('hide');
+    },
+    submitMessage:function() {
+    	Message.set({
+    		text:this.$("#newMessage").val(),
+    		user:{login:LoginStatus.get('username')},
+    	});
+    	Message.save();
     }
     // Logout button handler
 //    logout:function () {
