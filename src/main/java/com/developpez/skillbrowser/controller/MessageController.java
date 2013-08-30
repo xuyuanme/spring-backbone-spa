@@ -38,7 +38,7 @@ public class MessageController {
 		Authentication authentication = getSessionAuthentication(request);
 		if (isAuthenticated(authentication)) {
 			User u = userRepository.findByLogin(authentication.getName());
-			List<Message> ml = messageRepo.findByUser("" + u.getId());
+			List<Message> ml = messageRepo.findByUser(u);
 			for (Message m : ml) {
 				mdl.add(new MessageDto(m, u));
 			}

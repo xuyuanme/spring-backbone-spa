@@ -83,7 +83,7 @@ define([
     submitMessage:function() {
     	Message.set({
     		text:this.$("#newMessage").val(),
-    		user:{login:LoginStatus.get('username')},
+    		user:{id:1},
     	});
     	Message.save();
     }
