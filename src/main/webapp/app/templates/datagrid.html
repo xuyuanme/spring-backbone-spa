@@ -4,9 +4,9 @@
         <% _.each(columns, function(column) { %>
         <th>
             <% if(column.sort) { %>
-            <a href="<%= link %>/<%= collection.page + '/' + column.key + '/' + ( collection.sort == column.key && collection.dir == 'asc' ? 'desc' : 'asc' ) %>">
-                <% if(collection.sort == column.key) { %>
-                <i class="icon-chevron-<%= collection.dir == 'asc' ? 'down' : 'up' %>"/>
+            <a href="<%= link %>/<%= collection.page + '/' + column.sortkey + '/' + ( collection.sort == column.sortkey && collection.dir == 'asc' ? 'desc' : 'asc' ) %>">
+                <% if(collection.sort == column.sortkey) { %>
+                <i class="icon-chevron-<%= collection.dir == 'asc' ? 'up' : 'down' %>"/>
                 <% } %>
                 <% } %>
                 <%= column.title %>

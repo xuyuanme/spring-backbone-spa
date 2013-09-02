@@ -104,9 +104,9 @@ public class UserServiceImpl implements UserDetailsService, InitializingBean {
             userRepository.save(user);
             for (int i = 0; i < 26; i++) {
                 user = new User();
-                user.setFullname("full name " + i);
-                user.setLogin("login " + i);
-                user.setPassword("password" + i);
+                user.setFullname("full name " + (30 - i));
+                user.setLogin("login " + (30 - i));
+                user.setPassword("password" + (30 - i));
                 user.setSkills(skills);
                 Message m = new Message();
                 m.setUser(user);

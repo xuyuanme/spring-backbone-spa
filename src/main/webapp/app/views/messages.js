@@ -40,6 +40,7 @@ define([
           {
             title:'User',
             key:'user',
+            sortkey:'user.login',
             sort:true
           },
           {
