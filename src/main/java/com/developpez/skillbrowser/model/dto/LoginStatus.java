@@ -9,8 +9,18 @@ public class LoginStatus {
    * Boolean logged in current status
    */
   private boolean loggedIn;
+  
+  private Integer id;
 
-  /**
+  public Integer getId() {
+	return id;
+}
+
+public void setId(Integer id) {
+	this.id = id;
+}
+
+/**
    * Username (or login) currently logged in (or null if not logged in)
    */
   private String username;

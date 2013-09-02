@@ -198,6 +198,7 @@ public class    LoginController {
     LoginStatus loginStatus = new LoginStatus();
     if (isAuthenticated(authentication)) {
       loginStatus.setLoggedIn(true);
+      loginStatus.setId(userService.getUser(authentication.getName()).getId());
       loginStatus.setUsername(authentication.getName());
       loginStatus.setReturnCode(LoginStatus.RC_SUCCESS);
     } else {

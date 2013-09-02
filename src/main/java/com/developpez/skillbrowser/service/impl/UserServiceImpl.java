@@ -71,6 +71,10 @@ public class UserServiceImpl implements UserDetailsService, InitializingBean {
     		return new User();
     	}
     }
+    
+    public User getUser(String login) {
+    	return userRepository.findByLogin(login);
+    }
 
     /**
      * By implementing InitializingBean in a Spring bean, this method will be launch after Spring wirings are finished.<br/>
