@@ -6,10 +6,12 @@ define([
   'backbone',
   'collections/users',
   'collections/skills',
+  'collections/messages',
   'views/users',
   'views/skills',
-  'views/login'
-], function ($, Backbone, UsersCollection, SkillsCollection, UsersView, SkillsView, LoginView) {
+  'views/login',
+  'views/messages'
+], function ($, Backbone, UsersCollection, SkillsCollection, MessagesCollection, UsersView, SkillsView, LoginView, MessagesView) {
   /**
    * Url router for the applications. Defines routes with url and handlers
    */
@@ -22,13 +24,17 @@ define([
       'skills':'skills',
       'skills/:page':'skills',
       'skills/:page/:sort/:dir':'skills',
-      'login':'showLogin'
+      'login':'showLogin',
+      'messages':'messages',
+      'messages/:page':'messages',
+      'messages/:page/:sort/:dir':'messages',
     },
     // Constructor
     initialize:function () {
       this.usersView = null;
       this.skillsView = null;
       this.loginView = null;
+      this.messagesView = null;
     },
     // User handler with list, paging and sorting handling
     users:function (page, sort, dir) {
@@ -63,6 +69,18 @@ define([
     		this.loginView = new LoginView();
     	}
     	this.loginView.showLogin();
+    },
+    messages:function(page, sort, dir) {
+    	if(!this.messagesView) {
+    		this.messagesView = new MessagesView();
+    	}
+    	if (!page) {
+            page = 1;
+        }
+    	MessagesCollection.page = page;
+    	MessagesCollection.sort = sort;
+    	MessagesCollection.dir = dir;
+    	MessagesCollection.fetchPage();
     }
   });
 

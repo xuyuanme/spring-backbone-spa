@@ -2,6 +2,8 @@ package com.developpez.skillbrowser.repository;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -22,6 +24,6 @@ public interface MessageRepo extends JpaRepository<Message, Integer> {
 			+ " from Message m, User u "
 			+ " where m.user = u.id "
 			)
-	List<MessageDto> findAllDto();
+	Page<MessageDto> findAllDto(Pageable pageable);
 
 }
