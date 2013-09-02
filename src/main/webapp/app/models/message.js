@@ -10,7 +10,7 @@ define([
    */
   var Message = Backbone.Model.extend({
     // Url binding of the REST service
-    url:'data-rest/message/search/findAllDto'
+    url:'data-rest/message'
   });
 
   // Return the view as the Require module

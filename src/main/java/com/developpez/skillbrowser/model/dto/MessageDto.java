@@ -8,20 +8,20 @@ import com.developpez.skillbrowser.model.User;
 public class MessageDto {
 	public MessageDto(Message m, User u) {
 		setId(m.getId());
-		setLogin(u.getLogin());
+		setUser(u.getLogin());
 		setText(m.getText());
 		setTimestamp(m.getTimestamp());
 	}
 
-	public MessageDto(Integer id, String userName, String text, Date timestamp) {
+	public MessageDto(Integer id, String user, String text, Date timestamp) {
 		setId(id);
-		setLogin(userName);
+		setUser(user);
 		setText(text);
 		setTimestamp(timestamp);
 	}
 
 	Integer id;
-	String login;
+	String user;
 	String text;
 	Date timestamp;
 
@@ -33,12 +33,12 @@ public class MessageDto {
 		this.id = id;
 	}
 
-	public String getLogin() {
-		return login;
+	public String getUser() {
+		return user;
 	}
 
-	public void setLogin(String login) {
-		this.login = login;
+	public void setUser(String user) {
+		this.user = user;
 	}
 
 	public String getText() {

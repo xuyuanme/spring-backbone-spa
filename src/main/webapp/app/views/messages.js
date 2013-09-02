@@ -39,7 +39,7 @@ define([
           },
           {
             title:'User',
-            key:'login',
+            key:'user',
             sort:true
           },
           {
