@@ -6,48 +6,35 @@ define([
   'underscore',
   'backbone',
   'collections/messages',
-  'text!templates/datagrid.html'
-], function ($, _, Backbone, MessagesCollection, DataGridTemplate) {
+  'text!templates/messages.html',
+  'models/message'
+], function ($, _, Backbone, MessagesCollection, MessagesTemplate, Message) {
   /**
-   * User view which represents the user data grid
+   * Message view which represents the message list
    */
   var MessagesView = Backbone.View.extend({
+	el:'body',
     // The view generate a div tag
     tagName:'div',
-    // Binding the users collection
+    // Binding the messages collection
     model:MessagesCollection,
-    // Binding the DataGridTemplate loaded by text plugin of Require
-    template:_.template(DataGridTemplate),
-    // No events
+    // Binding the MessagesTemplate loaded by text plugin of Require
+    template:_.template(MessagesTemplate),
     events:{
+        'click .submitMessage':'submitMessage'
     },
     // View initialization with listening of the collection
     initialize:function () {
-      console.log('UsersView.initialize');
+      console.log('MessagesView.initialize');
       this.model.on('reset', this.render, this);
     },
     // View rendering handler
     render:function () {
-      console.log("UsersView.render", this.model);
+      console.log("MessagesView.render", this.model);
       $('.content').html(this.template({
         link:'#messages',
-        columns:[
-          {
-            title:'Message',
-            key:'text',
-            sort:true
-          },
-          {
-            title:'User',
-            key:'user',
-            sortkey:'user.login',
-            sort:true
-          },
-          {
-            title:"Other",
-            anchor:'login'
-          }
-        ],
+        text:'text',
+        user:'user',
         collection:this.model
       }));
 //      this.model.each(function (user) {
@@ -56,6 +43,14 @@ define([
 //          model:user.get('user.User.skills')
 //        });
 //      });
+    },
+    submitMessage:function() {
+    	Message.set({
+    		text:this.$("#newMessage").val(),
+    		//user:{id:LoginStatus.get("id")},
+    	});
+    	Message.save(null,{success:function(model, response){MessagesCollection.fetchPage();},
+    		error:function(model, response){MessagesCollection.fetchPage();}});
     }
   });
 

@@ -97,7 +97,7 @@ public class UserServiceImpl implements UserDetailsService, InitializingBean {
         	Set<Skill> skills = new HashSet<Skill>(Arrays.asList(new Skill[]{skill1, skill2, skill3}));
         	
         	User user = new User();
-            user.setFullname("admin");
+            user.setFullname("Anonymous");
             user.setLogin("admin");
             user.setPassword("admin");
             user.setSkills(skills);
@@ -110,6 +110,7 @@ public class UserServiceImpl implements UserDetailsService, InitializingBean {
                 user.setSkills(skills);
                 Message m = new Message();
                 m.setUser(user);
+                m.setText("user message "+(30-i));
                 Comment c = new Comment();
                 c.setMessage(m);
                 c.setUser(user);

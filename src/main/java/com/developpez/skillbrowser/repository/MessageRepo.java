@@ -20,7 +20,7 @@ public interface MessageRepo extends JpaRepository<Message, Integer> {
 	List<Message> findByUser(@Param(value = "id") User user);
 	
 	@Query("select new com.developpez.skillbrowser.model.dto.MessageDto"
-			+ " (m.id,u.login,m.text,m.timestamp) "
+			+ " (m.id,u.fullname,m.text,m.timestamp) "
 			+ " from Message m, User u "
 			+ " where m.user = u.id "
 			)

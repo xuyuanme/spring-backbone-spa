@@ -9,6 +9,9 @@ define([
    * Message Model
    */
   var Message = Backbone.Model.extend({
+	defaults:{
+		user: {id:"1"}
+	},
     // Url binding of the REST service
     url:'data-rest/message'
   });
