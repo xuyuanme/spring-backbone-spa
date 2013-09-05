@@ -14,3 +14,23 @@
       </div>
       <hr>
 <% }) %>
+
+<div class="pull-right">
+    <ul class="pagination pagination-sm">
+        <li class="<%= collection.currentPage == 1 ? 'disabled' : '' %>">
+            <a href="<%= link %>/<%= collection.currentPage == 1 ? 1 : collection.currentPage - 1 %><%= collection.sort ? '/' + collection.sort + '/' + collection.dir : '' %>">
+                &lt;</a>
+        </li>
+        <% for( var i = 1; i < collection.totalPages + 1; i++ ) { %>
+        <li class="<%= collection.currentPage == i ? 'active' : '' %>">
+            <a href="<%= link %>/<%= i %><%= collection.sort ? '/' + collection.sort + '/' + collection.dir : '' %>"><%=
+                i %></a>
+        </li>
+        <% } %>
+        <li class="<%= collection.currentPage == collection.totalPages ? 'disabled' : '' %>">
+            <a href="<%= link %>/<%= collection.currentPage == collection.totalPages ? collection.totalPages : collection.currentPage + 1 %><%= collection.sort ? '/' + collection.sort + '/' + collection.dir : '' %>">
+                &gt;</a>
+        </li>
+    </ul>
+</div>
+<div class="clearfix"></div>

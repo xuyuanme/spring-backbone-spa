@@ -49,8 +49,8 @@ define([
     		text:this.$("#newMessage").val(),
     		//user:{id:LoginStatus.get("id")},
     	});
-    	Message.save(null,{success:function(model, response){MessagesCollection.fetchPage();},
-    		error:function(model, response){MessagesCollection.fetchPage();}});
+    	Message.save(null,{success:function(model, response){this.$("#newMessage").val('');MessagesCollection.fetchPage();},
+    		error:function(model, response){this.$("#newMessage").val('');MessagesCollection.fetchPage();}});
     }
   });
 

@@ -9,6 +9,7 @@ define([
 
   var MessagesCollection = Hateoas.PageableCollection.extend({
     url:'data-rest/message/search/findAllDto'
+	//url:'rest/message'
   });
 
   // Return the view as the Require module
