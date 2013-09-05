@@ -36,6 +36,7 @@ define([
           {
             title:'Name',
             key:'name',
+            sortkey:'name',
             sort:true
           },
           {

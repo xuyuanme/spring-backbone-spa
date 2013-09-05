@@ -36,11 +36,13 @@ define([
           {
             title:'Login',
             key:'login',
+            sortkey:'login',
             sort:true
           },
           {
             title:'Full Name',
             key:'fullname',
+            sortkey:'fullname',
             sort:true
           },
           {
