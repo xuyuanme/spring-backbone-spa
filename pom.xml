@@ -99,7 +99,7 @@
         <dependency>
             <groupId>org.springframework.hateoas</groupId>
             <artifactId>spring-hateoas</artifactId>
-            <version>0.7.0.RELEASE</version>
+            <version>0.3.0.RELEASE</version>
         </dependency>
         <!-- Jackson JSON marshaller. Just by adding this dependecy, Spring MVC will be able to handle JSON request when HTTP header are asking for -->
         <!-- <dependency> -->
