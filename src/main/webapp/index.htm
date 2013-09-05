@@ -9,6 +9,36 @@
     <title>
       The Message
     </title>
+    
+    <style>
+	.toast{
+		opacity: .9;
+		
+		/*The good stuff */
+		-webkit-transition: opacity 0.5s ease-out;  /* Saf3.2+, Chrome */
+		-moz-transition: opacity 0.5s ease-out;  /* FF4+ */
+		-ms-transition: opacity 0.5s ease-out;  /* IE10? */
+		-o-transition: opacity 0.5s ease-out;  /* Opera 10.5+ */
+		transition: opacity 0.5s ease-out;		
+	}
+	</style>
+	
+	<script type="text/javascript">
+	var intervalCounter = 0;
+
+	function hideToast(){
+		var alert = document.getElementById("submit-success");
+		alert.style.opacity = 0;
+		clearInterval(intervalCounter);
+	}
+	
+	function showToast(){
+		var alert = document.getElementById("submit-success");
+		alert.style.opacity = .9;
+		intervalCounter = setInterval("hideToast()", 1000);
+	}
+	</script>
+
     <link href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"
     rel="stylesheet">
     <script data-main="app/main" src="libs/require-2.0.6/require.js"></script>
@@ -28,7 +58,7 @@
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
             <li class="active">
-              <a href="#">Home</a>
+              <a href="#messages/1/timestamp/desc">Home</a>
             </li>
             <li>
               <a href="#about">About</a>
@@ -57,7 +87,7 @@
           Your Message:
         </label>
         <div class="form-group">
-          <div class="submit-success" style="position: relative;top: 100px;left: 15px;margin-top: -34px;font-size:16px;color:#468847;display:none">Your message is submitted successfully!</div>
+          <div id="submit-success" class="toast" style="position: relative;top: 100px;left: 15px;margin-top: -34px;font-size:16px;color:#468847;opacity:0">Your message is submitted successfully!</div>
           <textarea id="newMessage" class="form-control" placeholder="Enter message here" style="margin: 2px; height: 100px;"></textarea>
         </div>
         <p>
