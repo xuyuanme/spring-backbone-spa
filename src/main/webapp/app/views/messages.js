@@ -27,6 +27,10 @@ define([
     initialize:function () {
       console.log('MessagesView.initialize');
       this.model.on('reset', this.render, this);
+      MessagesCollection.page = 1;
+  	  MessagesCollection.sort = 'timestamp';
+  	  MessagesCollection.dir = 'desc';
+  	  MessagesCollection.fetchPage();
     },
     // View rendering handler
     render:function () {

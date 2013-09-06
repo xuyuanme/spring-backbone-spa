@@ -1,6 +1,8 @@
-package com.developpez.skillbrowser.repository;
+package me.xuyuan.notegg.repository;
 
-import com.developpez.skillbrowser.model.User;
+
+import me.xuyuan.notegg.model.User;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.data.rest.repository.annotation.RestResource;

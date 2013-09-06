@@ -1,4 +1,4 @@
-package com.developpez.skillbrowser.model;
+package me.xuyuan.notegg.model;
 
 import java.util.Calendar;
 import java.util.Date;

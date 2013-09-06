@@ -1,10 +1,16 @@
-package com.developpez.skillbrowser.controller;
+package me.xuyuan.notegg.controller;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import me.xuyuan.notegg.model.Message;
+import me.xuyuan.notegg.model.User;
+import me.xuyuan.notegg.model.dto.MessageDto;
+import me.xuyuan.notegg.repository.MessageRepo;
+import me.xuyuan.notegg.repository.UserRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -15,11 +21,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.developpez.skillbrowser.model.Message;
-import com.developpez.skillbrowser.model.User;
-import com.developpez.skillbrowser.model.dto.MessageDto;
-import com.developpez.skillbrowser.repository.MessageRepo;
-import com.developpez.skillbrowser.repository.UserRepository;
 
 @Controller
 @RequestMapping("/message")

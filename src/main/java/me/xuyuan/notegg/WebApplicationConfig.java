@@ -1,4 +1,4 @@
-package com.developpez.skillbrowser;
+package me.xuyuan.notegg;
 
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;

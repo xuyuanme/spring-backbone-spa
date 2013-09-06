@@ -9,20 +9,20 @@
     <modelVersion>4.0.0</modelVersion>
 
     <!-- Define the identification of the project, in Maven its called an artifact -->
-    <groupId>com.developpez</groupId>
-    <artifactId>skillbrowser</artifactId>
+    <groupId>me.xuyuan</groupId>
+    <artifactId>notegg</artifactId>
     <packaging>war</packaging>
     <version>0.0.1-SNAPSHOT</version>
 
     <!-- Define informative information on the project. There is many more informations which can be fulfilled -->
-    <name>skillbrowser Maven Webapp</name>
+    <name>Notegg Maven Webapp</name>
     <url>http://maven.apache.org</url>
 
     <!-- The build block allow to specify all specific parameters. As this project follow all Maven conventions, there is no need to configure many things. -->
     <build>
         <!-- Final name is an important parameter which handle the final package name. As this is a war and the war name will often indicates the web context
           of the webapp, this configuration override standard final name which contains the version number to a value more stable -->
-        <finalName>skillbrowser</finalName>
+        <finalName>notegg</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>

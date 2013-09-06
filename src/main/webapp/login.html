@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+<head>
+<title>Skill Browser</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="libs/bootstrap-2.1.0/css/bootstrap.min.css" rel="stylesheet" />
+<link href="libs/bootstrap-2.1.0/css/bootstrap-responsive.min.css" rel="stylesheet">
+<script data-main="app/main" src="libs/require-2.0.6/require.js"></script>
+</head>
+<body>
+  <style>
+      @media (min-width: 980px) {
+        body {
+          margin-top: 43px;
+          width: 980px ;
+          margin-left: auto ;
+          margin-right: auto ;
+        }
+      }
+  </style>
+
+	<div class="navbar navbar-inverse navbar-fixed-top">
+		<div class="navbar-inner">
+			<div class="container">
+				<button type="button" class="btn btn-navbar" data-toggle="collapse"
+					data-target=".nav-collapse">
+					<span class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+				<a class="brand" href="#">Skill Browser</a>
+				<div class="nav-collapse collapse">
+					<ul class="nav">
+						<li><a href="#users" class="users">Users</a></li>
+						<li><a href="#messages" class="messages">Messages</a></li>
+					</ul>
+					<ul class="nav pull-right">
+						<!-- fill with login.js -->
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- This block is the login form and it starts hidden (diplay: none). It will be shown by jQuery UI dialog feature when needed. -->
+  <!-- It's should be possible to add form content with a dynamic template but there is a reason if the content is in the main static HTML file.
+        Even if it's hidden, the browser will detect the form login and will be able to save you authentication for the next time. A completely
+        dynamic login form would break this useful browser feature -->
+ <div class="register-login">
+  <div class="modal hide fade login" style="display: none;">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+      <h3>Login</h3>
+    </div>
+    <div class="modal-body">
+      <form class="form-horizontal">
+        <div class="control-group">
+          <label class="control-label" for="username">Login</label>
+          <div class="controls">
+            <input type="text" id="username" placeholder="Login">
+          </div>
+        </div>
+        <div class="control-group">
+          <label class="control-label" for="password">Password</label>
+          <div class="controls">
+            <input type="password" id="password" placeholder="Password">
+          </div>
+        </div>
+        <div class="control-group">
+          <label class="control-label" for="rememberMe">Remember me</label>
+          <div class="controls">
+            <input type="checkbox" id="rememberMe" />
+          </div>
+        </div>
+        <div class="alert alert-error">
+          Invalid user name or password.
+        </div>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <a href="#" class="btn cancelLogin">Cancel</a> <a href="#" class="btn showRegister">Register</a> <a href="#" class="btn btn-primary doLogin">Login</a>
+    </div>
+  </div>
+  
+  <div class="modal hide fade register" style="display: none;">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+      <h3>Register</h3>
+    </div>
+    <div class="modal-body">
+      <form class="form-horizontal">
+        <div class="control-group">
+          <label class="control-label" for="newUsername">Login</label>
+          <div class="controls">
+            <input type="text" id="newUsername" placeholder="Login">
+          </div>
+        </div>
+        <div class="control-group">
+          <label class="control-label" for="newPassword">Password</label>
+          <div class="controls">
+            <input type="password" id="newPassword" placeholder="Password">
+          </div>
+        </div>
+        <div class="control-group">
+          <label class="control-label" for="repeatPassword">Repeat Pwd</label>
+          <div class="controls">
+            <input type="password" id="repeatPassword" placeholder="Password">
+          </div>
+        </div>
+        <div class="alert">
+          User name already exists.
+        </div>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <a href="#" class="btn cancelLogin">Cancel</a> <a href="#" class="btn btn-primary doRegister">Register</a>
+    </div>
+  </div>
+ </div>
+
+  <!-- Main web site container positioned with 960 gs classes -->
+  <div class="container">
+    <div class="row">
+
+      <!-- Main title styled -->
+      <div class="span12 ui-dialog-titlebar ui-widget-header ui-corner-all ui-helper-clearfix">
+        <h1>Skill Browser</h1>
+      </div>
+
+      <!-- Content div anchor -->
+      <div class="span12 content" ng-view>
+        <p>Hello World!</p>
+        <input id="newMessage" placeholder="New Message">
+        <a href="#" class="btn submitMessage">Submit </a>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

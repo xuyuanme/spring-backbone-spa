@@ -1,4 +1,4 @@
-package com.developpez.skillbrowser.model.dto;
+package me.xuyuan.notegg.model.dto;
 
 /**
  * LoginStatus. Simple DTO (Data Transfert Object) used to give a structure to a login status return in the login process

@@ -1,4 +1,4 @@
-package com.developpez.skillbrowser;
+package me.xuyuan.notegg;
 
 import org.springframework.data.rest.webmvc.RepositoryRestExporterServlet;
 import org.springframework.web.WebApplicationInitializer;

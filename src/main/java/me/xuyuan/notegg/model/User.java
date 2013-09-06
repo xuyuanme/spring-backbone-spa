@@ -1,4 +1,4 @@
-package com.developpez.skillbrowser.model;
+package me.xuyuan.notegg.model;
 
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 import org.springframework.data.rest.repository.annotation.RestResource;

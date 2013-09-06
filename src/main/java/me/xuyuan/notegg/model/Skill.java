@@ -1,4 +1,4 @@
-package com.developpez.skillbrowser.model;
+package me.xuyuan.notegg.model;
 
 import org.codehaus.jackson.annotate.JsonIgnore;
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;

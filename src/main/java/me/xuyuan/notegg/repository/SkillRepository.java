@@ -1,7 +1,9 @@
-package com.developpez.skillbrowser.repository;
+package me.xuyuan.notegg.repository;
 
-import com.developpez.skillbrowser.model.Skill;
-import com.developpez.skillbrowser.model.User;
+
+import me.xuyuan.notegg.model.Skill;
+import me.xuyuan.notegg.model.User;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;

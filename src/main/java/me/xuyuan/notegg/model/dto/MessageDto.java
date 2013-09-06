@@ -1,9 +1,10 @@
-package com.developpez.skillbrowser.model.dto;
+package me.xuyuan.notegg.model.dto;
 
 import java.util.Date;
 
-import com.developpez.skillbrowser.model.Message;
-import com.developpez.skillbrowser.model.User;
+import me.xuyuan.notegg.model.Message;
+import me.xuyuan.notegg.model.User;
+
 
 public class MessageDto {
 	public MessageDto(Message m, User u) {

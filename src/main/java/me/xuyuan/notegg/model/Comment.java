@@ -1,4 +1,4 @@
-package com.developpez.skillbrowser.model;
+package me.xuyuan.notegg.model;
 
 import javax.persistence.Entity;
 import javax.persistence.DiscriminatorValue;

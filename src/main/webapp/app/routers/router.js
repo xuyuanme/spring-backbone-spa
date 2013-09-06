@@ -77,6 +77,12 @@ define([
     	if (!page) {
             page = 1;
         }
+    	if (!sort) {
+    		sort = 'timestamp';
+    	}
+    	if (!dir) {
+    		dir = 'desc';
+    	}
     	MessagesCollection.page = page;
     	MessagesCollection.sort = sort;
     	MessagesCollection.dir = dir;

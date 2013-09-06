@@ -1,8 +1,9 @@
-package com.developpez.skillbrowser.controller;
+package me.xuyuan.notegg.controller;
 
-import com.developpez.skillbrowser.model.User;
-import com.developpez.skillbrowser.model.dto.LoginStatus;
-import com.developpez.skillbrowser.service.impl.UserServiceImpl;
+
+import me.xuyuan.notegg.model.User;
+import me.xuyuan.notegg.model.dto.LoginStatus;
+import me.xuyuan.notegg.service.impl.UserServiceImpl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;

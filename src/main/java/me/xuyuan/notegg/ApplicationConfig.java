@@ -1,4 +1,4 @@
-package com.developpez.skillbrowser;
+package me.xuyuan.notegg;
 
 import java.util.Properties;
 

@@ -1,13 +1,15 @@
-package com.developpez.skillbrowser.service.impl;
+package me.xuyuan.notegg.service.impl;
 
-import com.developpez.skillbrowser.model.Comment;
-import com.developpez.skillbrowser.model.Message;
-import com.developpez.skillbrowser.model.Skill;
-import com.developpez.skillbrowser.model.User;
-import com.developpez.skillbrowser.repository.CommentRepo;
-import com.developpez.skillbrowser.repository.MessageRepo;
-import com.developpez.skillbrowser.repository.SkillRepository;
-import com.developpez.skillbrowser.repository.UserRepository;
+
+import me.xuyuan.notegg.model.Comment;
+import me.xuyuan.notegg.model.Message;
+import me.xuyuan.notegg.model.Skill;
+import me.xuyuan.notegg.model.User;
+import me.xuyuan.notegg.repository.CommentRepo;
+import me.xuyuan.notegg.repository.MessageRepo;
+import me.xuyuan.notegg.repository.SkillRepository;
+import me.xuyuan.notegg.repository.UserRepository;
+
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
