@@ -7,8 +7,9 @@ define([
   'backbone',
   'collections/messages',
   'text!templates/messages.html',
-  'models/message'
-], function ($, _, Backbone, MessagesCollection, MessagesTemplate, Message) {
+  'models/message',
+  'i18n!nls/labels'
+], function ($, _, Backbone, MessagesCollection, MessagesTemplate, Message, i18nLabels) {
   /**
    * Message view which represents the message list
    */
@@ -39,7 +40,8 @@ define([
         link:'#messages',
         text:'text',
         user:'user',
-        collection:this.model
+        collection:this.model,
+        labels:i18nLabels
       }));
 //      this.model.each(function (user) {
 //        new UserSkillsView({
@@ -53,8 +55,10 @@ define([
     		text:this.$("#newMessage").val(),
     		//user:{id:LoginStatus.get("id")},
     	});
-    	Message.save(null,{success:function(model, response){alert("should be this");},
-    		error:function(model, response){this.$("#newMessage").val('');showToast();MessagesCollection.fetchPage();}});
+    	if (this.$("#newMessage").val()!=='') {
+    		Message.save(null,{success:function(model, response){alert("should be this");},
+        		error:function(model, response){this.$("#newMessage").val('');showToast();MessagesCollection.fetchPage();}});
+    	}
     }
   });
 

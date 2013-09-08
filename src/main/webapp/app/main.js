@@ -32,9 +32,12 @@ require.config({
     bootstrap:"../libs/bootstrap-2.1.0/js/bootstrap.min",
     underscore:"../libs/underscore-1.3.3/underscore",
     backbone:"../libs/backbone-0.9.2/backbone",
-    text:"../libs/require-2.0.6/text"
+    text:"../libs/require-2.0.6/text",
+    i18n:"../libs/i18n/i18n"
   }
 });
+
+  //locale: localStorage.getItem('locale') || 'zh-cn';
 
 require([
   //'views/login',

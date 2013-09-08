@@ -87,39 +87,39 @@ public class UserServiceImpl implements UserDetailsService, InitializingBean {
         System.out.println("kikoo");
 
         if (skillRepository.count() == 0 && userRepository.count() == 0) {
-        	Skill skill1 = new Skill();
-        	skill1.setName("toto 1");
-        	skillRepository.save(skill1);
-        	Skill skill2 = new Skill();
-        	skill2.setName("toto 2");
-        	skillRepository.save(skill2);
-        	Skill skill3 = new Skill();
-        	skill3.setName("toto 3");
-        	skillRepository.save(skill3);
-        	Set<Skill> skills = new HashSet<Skill>(Arrays.asList(new Skill[]{skill1, skill2, skill3}));
+//        	Skill skill1 = new Skill();
+//        	skill1.setName("toto 1");
+//        	skillRepository.save(skill1);
+//        	Skill skill2 = new Skill();
+//        	skill2.setName("toto 2");
+//        	skillRepository.save(skill2);
+//        	Skill skill3 = new Skill();
+//        	skill3.setName("toto 3");
+//        	skillRepository.save(skill3);
+//        	Set<Skill> skills = new HashSet<Skill>(Arrays.asList(new Skill[]{skill1, skill2, skill3}));
         	
         	User user = new User();
-            user.setFullname("Anonymous");
+            user.setFullname("ƒ‰√˚”√ªß");
             user.setLogin("admin");
             user.setPassword("admin");
-            user.setSkills(skills);
+//            user.setSkills(skills);
             userRepository.save(user);
-            for (int i = 0; i < 26; i++) {
-                user = new User();
-                user.setFullname("full name " + (30 - i));
-                user.setLogin("login " + (30 - i));
-                user.setPassword("password" + (30 - i));
-                user.setSkills(skills);
-                Message m = new Message();
-                m.setUser(user);
-                m.setText("user message "+(30-i));
-                Comment c = new Comment();
-                c.setMessage(m);
-                c.setUser(user);
-                userRepository.save(user);
-                messageRepo.save(m);
-                commentRepo.save(c);
-            }
+//            for (int i = 0; i < 26; i++) {
+//                user = new User();
+//                user.setFullname("full name " + (30 - i));
+//                user.setLogin("login " + (30 - i));
+//                user.setPassword("password" + (30 - i));
+//                user.setSkills(skills);
+//                Message m = new Message();
+//                m.setUser(user);
+//                m.setText("user message "+(30-i));
+//                Comment c = new Comment();
+//                c.setMessage(m);
+//                c.setUser(user);
+//                userRepository.save(user);
+//                messageRepo.save(m);
+//                commentRepo.save(c);
+//            }
         }
     }
 
