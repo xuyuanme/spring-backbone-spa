@@ -22,7 +22,7 @@
     <build>
         <!-- Final name is an important parameter which handle the final package name. As this is a war and the war name will often indicates the web context
           of the webapp, this configuration override standard final name which contains the version number to a value more stable -->
-        <finalName>notegg</finalName>
+        <finalName>ROOT</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -41,6 +41,11 @@
     				<failOnMissingWebXml>false</failOnMissingWebXml>
   				</configuration>
 			</plugin>
+			<plugin>
+-                <groupId>org.apache.tomcat.maven</groupId>
+-                <artifactId>tomcat7-maven-plugin</artifactId>
+-                <version>2.0</version>
+-            </plugin>
         </plugins>
     </build>
 
