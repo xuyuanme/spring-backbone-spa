@@ -21,7 +21,7 @@ public interface MessageRepo extends JpaRepository<Message, Integer> {
 	List<Message> findByUser(@Param(value = "id") User user);
 	
 	@Query("select new me.xuyuan.notegg.model.dto.MessageDto"
-			+ " (m.id,u.fullname,m.text,m.timestamp) "
+			+ " (m.id,m.user,u.fullname,m.text,m.timestamp) "
 			+ " from Message m, User u "
 			+ " where m.user = u.id "
 			)

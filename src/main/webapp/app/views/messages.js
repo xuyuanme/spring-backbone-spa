@@ -8,8 +8,9 @@ define([
   'collections/messages',
   'text!templates/messages.html',
   'models/message',
+  'models/anonymousLogin',
   'i18n!nls/labels'
-], function ($, _, Backbone, MessagesCollection, MessagesTemplate, Message, i18nLabels) {
+], function ($, _, Backbone, MessagesCollection, MessagesTemplate, Message, LoginStatus, i18nLabels) {
   /**
    * Message view which represents the message list
    */
@@ -27,7 +28,18 @@ define([
     // View initialization with listening of the collection
     initialize:function () {
       console.log('MessagesView.initialize');
+      if(!localStorage.udid) {
+    		localStorage.udid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(
+    				/[xy]/g, function(c) {var r = Math.random()*16|0,v=c=='x'?r:r&0x3|0x8;return v.toString(16);});
+      }
+      console.log(localStorage.udid);
+      LoginStatus.set({
+          username:localStorage.udid,
+      });
+      LoginStatus.save({}, {type: 'put'});
+      
       this.model.on('reset', this.render, this);
+
       MessagesCollection.page = 1;
   	  MessagesCollection.sort = 'timestamp';
   	  MessagesCollection.dir = 'desc';
@@ -40,6 +52,7 @@ define([
         link:'#messages',
         text:'text',
         user:'user',
+        userId:'userId',
         collection:this.model,
         labels:i18nLabels
       }));
@@ -53,10 +66,10 @@ define([
     submitMessage:function() {
     	Message.set({
     		text:this.$("#newMessage").val(),
-    		//user:{id:LoginStatus.get("id")},
+    		user:{id:LoginStatus.get("id")},
     	});
     	if (this.$("#newMessage").val()!=='') {
-    		Message.save(null,{success:function(model, response){alert("should be this");},
+    		Message.save(null,{success:function(model, response){alert("should be this");this.$("#newMessage").val('');showToast();MessagesCollection.fetchPage();},
         		error:function(model, response){this.$("#newMessage").val('');showToast();MessagesCollection.fetchPage();}});
     	}
     }
