@@ -23,7 +23,7 @@ public interface MessageRepo extends JpaRepository<Message, Integer> {
 	@Query("select new me.xuyuan.notegg.model.dto.MessageDto"
 			+ " (m.id,m.user,u.fullname,m.text,m.timestamp) "
 			+ " from Message m, User u "
-			+ " where m.user = u.id "
+			+ " where m.user = u.id and m.status != -1 "
 			)
 	Page<MessageDto> findAllDto(Pageable pageable);
 
